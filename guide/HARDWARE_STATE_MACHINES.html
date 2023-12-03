@@ -156,13 +156,84 @@ The leds I will consider a 4 bit value.<br>
 <span style="font-weight: bold; text-decoration: underline;">PROGRAMMING</span><br>
 <br>
 This is where the hole seems to exist on most of the information for these systems.<br>
-I'm going to use C_PLD for writing the ROM images. <br>
+I'm going to use C_PLD for creating the ROM images that will operate the state machine. <br>
 Unlike the programs I wrote, with C_PLD you write a program, not a configuration file.<br>
 The first step is to configure the environment in main.c.<br>
 <br>
 <img style="width: 263px; height: 188px;" alt="" src="C_PLD1.png"><br>
 6.1 memory configuration in main.c<br>
 <br>
+<br>
+Here is the part we will tackle next, I will start by breaking down the parts of the code and describing how it works.<br>
+Then I'll work on getting into modifying it to do particular things.<br>
+<br>
+<img style="width: 957px; height: 648px;" alt="" src="C_PLD2.png"><br>
+6.2 - example source for the example circuit<br>
+<br>
+The code has 3 main tasks, break down every address in the table into the variables used. (orange)<br>
+Apply your custom code to modify your variables. (blue)<br>
+Recombine the variables into entries for the table. (green)<br>
+These values are saved as binary values in a file named output.bin<br>
+<br>
+<img style="width: 957px; height: 648px;" alt="" src="C_PLD3.png"><br>
+6.3 - The different code components hilighted.<br>
+<br>
+<br>
+System inputs: As said, we have 3 inputs to form the address of the
+table. The keyboard, the program number, and the program state. <br>
+These 3 lines of code take an "arbitrary" simulated address input, and
+form our 3 variables. These 3 lines of code split the that up for us.<br>
+<br>
+<img style="width: 473px; height: 270px;" alt="" src="C_PLD4.png"><br>
+6.4 - breaking down the address of the table into variables.<br>
+<br>
+<br>
+Next is the completely custom code to perform our process. This is the first example of some code<br>
+I will demonstrate on a build of the example hardware. It stays in program 0, steps thru all 4 states, <br>
+Each state turns on one of the output LEDs. <br>
+<br>
+<img style="width: 371px; height: 261px;" alt="" src="C_PLD5.png"><br>
+6.5 - Code to produce our output values.<br>
+<br>
+<br>
+The last step is to have it take the output values and compose them into a single value for the table.<br>
+This code is much like the breaking down of the addresses, but in reverse. This specifies which bits of the <br>
+table value our variables are mapped into.<br>
+<img style="width: 543px; height: 208px;" alt="" src="C_PLD6.png"><br>
+6.6 - Merging the output variables into a single value.<br>
+<br>
+Its important to note that bit splicing positions do not have to be consecutive or in order. The EPROM pinout<br>
+is a good example. On this ROM, the adjacent address lines go from 0-7, but then 12, and 15. <br>
+<div style="margin-left: 40px; color: rgb(102, 0, 204);">spliceValueFromField( &amp;my10bitVarI, A, 10,&nbsp; 0,1,2,3,4,5,6,7,12,15);<br>
+</div>
+A 4 bit value could be created with adjacent bits on the other side if one wanted.<br>
+<div style="margin-left: 40px; color: rgb(102, 51, 255);"><span style="color: rgb(102, 0, 204);">spliceValueFromField( &amp;my4bitVarI, A, 4,&nbsp; 13,8,9,11);</span><br>
+</div>
+<br>
+<br>
+<img style="width: 427px; height: 377px;" alt="" src="ROM1.png"><br>
+6.7 - Example of unorderly bits that can be handled in the bit splicing.<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+Methods<br>
+<br>
+- using rising and falling edges of the clock on seperate latches to double the output size at the same clock speed.<br>
+<br>
+- using multiple addreses to transform the outputs into serial bit streams.<br>
+<br>
+- index compression<br>
+<br>
+- events in, events out.<br>
+<br>
+- executing an FSM on an FPGA<br>
+<br>
+- executing an FSM on a CPU<br>
 <br>
 <br>
 <br>
