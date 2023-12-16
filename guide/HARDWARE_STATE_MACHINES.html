@@ -1,282 +1,499 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>HARDWARE STATE MACHINES</title></head><body>HARDWARE STATE MACHINES<br>
-<br>
-I was so frustrated when I was first starting with this stuff because I had NOBODY I could talk to who understood any of it.<br>
+<html><head>
+  
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+  <title>HARDWARE STATE MACHINES</title>
+
+  
+</head><body>
+<table style="text-align: left; width: 80%; margin-left: auto; margin-right: auto;" border="0" cellpadding="0" cellspacing="0">
+
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><br>
+      <div style="text-align: center;"><big><big><big><span style="font-weight: bold;">HARDWARE STATE MACHINES</span><br>
+      </big></big></big></div>
+      <br>
+When I was first starting with this stuff I got SO frustrated because I
+had NOBODY I could talk to who understood any of it.<br>
+I was SURE that computers were not needed, everything could be done
+with state machines. Today I have seen it come full circle as I have
+created computers with state machines. I have come to understand the
+advantages and limits.<br>
 I will try to tell the story of my work in order.<br>
-<br>
-<span style="font-weight: bold; text-decoration: underline;">BASIC CONFIGURATION</span><br>
-<br>
+      <br>
+      <span style="font-weight: bold; text-decoration: underline;">BASIC
+CONFIGURATION</span><br>
+      <br>
 This is the basic configuration:<br>
-In this diagram, the lines in and out of the memory and latch represent an arbitrary number of signals.<br>
+In this diagram, the lines in and out of the memory and latch represent
+an arbitrary number of signals.<br>
 I'm not going to specify how many untill we get to specific examples.<br>
-<br>
-<img style="width: 640px; height: 480px;" alt="" src="p1300137.jpg"><br>
-1.1 - basic design<br>
-<br>
-This works by having each memory location specify the address of the next memory location.<br>
-A data latch controls the flow so that only one controlled step is 'fed back' at a time. A clock source<br>
-&nbsp;(tho it does not need to be a regular rate) triggers the next step.<br>
-<br>
-<img style="width: 640px; height: 480px;" alt="" src="p1300139.jpg"><br>
-1.2 - basic operation<br>
-<br>
-Programming of this system can be done in a table. Here is an example that performs<br>
-an irregular numbering sequence. The values in the sequence must be unique, because it is not possible<br>
+      <br>
+      <div style="text-align: center;"><img style="width: 640px; height: 480px;" alt="" src="p1300137.jpg"><br>
+      </div>
+      <div style="text-align: center;">1.1 - basic design<br>
+      </div>
+      <br>
+This works by having each memory location specify the address of the
+next memory location.<br>
+A data latch controls the flow so that only one controlled step is 'fed
+back' at a time. A clock source<br>
+&nbsp;(tho it does not need to be a regular rate) triggers the next
+step.<br>
+      <br>
+      <div style="text-align: center;"><img style="width: 640px; height: 480px;" alt="" src="p1300139.jpg"><br>
+      </div>
+      <div style="text-align: center;">1.2 - basic operation<br>
+      </div>
+      <br>
+Programming of this system can be done in a table. Here is an example
+that performs<br>
+an irregular numbering sequence. The values in the sequence must be
+unique, because it is not possible<br>
 to define more than one next state for a source state.<br>
-<br>
-<img style="width: 640px; height: 480px;" alt="" src="p1300142.jpg"><br>
-1.3 - programming table for the basic machine.<br>
-<br>
-<span style="font-weight: bold; text-decoration: underline;">ADDING OUTPUTS</span><br>
-<br>
-As shown though, the system does not really have any inputs or outputs. It just goes thru a sequence of unique numbers.<br>
-So lets make it a bit more complex. Here I have used some of the outputs of the memory to define a system output value.<br>
-Now the state and output can be different. Importantly, the output value does not need to be unique.<br>
-<br>
-<img style="width: 640px; height: 480px;" alt="" src="p1300140.jpg"><br>
-2.1 - machine with outputs added.<br>
-<br>
-To program this system with outputs we can simply add a new column to the table.<br>
-Here is the revised table with an output column. Note that the output can have duplicate values.<br>
-<br>
-<img style="width: 640px; height: 480px;" alt="" src="p1300143.jpg"><br>
-2.2 - programming table with an output column added.<br>
-<br>
-<br>
-The table can also be expressed in a type of program lines, each consists of an OUTPUT and GOTO command.<br>
-Here are the first two lines of the previous table expressed in this way.<br>
-<br>
-<img style="width: 640px; height: 480px;" alt="" src="p1300144.jpg"><br>
-2.3 - Alternate programing language expression of table.<br>
-<br>
-<br>
-<span style="font-weight: bold; text-decoration: underline;">ADDING INPUTS</span><br>
-<br>
+      <br>
+      <div style="text-align: center;"><img style="width: 640px; height: 480px;" alt="" src="p1300142.jpg"><br>
+      </div>
+      <div style="text-align: center;">1.3 - programming table for the
+basic machine.<br>
+      </div>
+      <br>
+      <span style="font-weight: bold; text-decoration: underline;">ADDING
+OUTPUTS</span><br>
+      <br>
+As shown though, the system does not really have any inputs or outputs.
+It just goes thru a sequence of unique numbers.<br>
+So lets make it a bit more complex. Here I have used some of the
+outputs of the memory to define a system output value.<br>
+Now the state and output can be different. Importantly, the output
+value does not need to be unique.<br>
+      <br>
+      <div style="text-align: center;"><img style="width: 640px; height: 480px;" alt="" src="p1300140.jpg"><br>
+      </div>
+      <div style="text-align: center;">2.1 - machine with outputs added.<br>
+      </div>
+      <br>
+To program this system with outputs we can simply add a new column to
+the table.<br>
+Here is the revised table with an output column. Note that the output
+can have duplicate values.<br>
+      <br>
+      <div style="text-align: center;"><img style="width: 640px; height: 480px;" alt="" src="p1300143.jpg"><br>
+      </div>
+      <div style="text-align: center;">2.2 - programming table with an
+output column added.<br>
+      </div>
+      <br>
+      <br>
+The table can also be expressed in a type of program lines, each
+consists of an OUTPUT and GOTO command.<br>
+Here are the first two lines of the previous table expressed in this
+way.<br>
+      <br>
+      <div style="text-align: center;"><img style="width: 640px; height: 480px;" alt="" src="p1300144.jpg"><br>
+      </div>
+      <div style="text-align: center;">2.3 - Alternate programing
+language expression of table.<br>
+      </div>
+      <br>
+      <br>
+      <span style="font-weight: bold; text-decoration: underline;">ADDING
+INPUTS</span><br>
+      <br>
 ok, Now its all gonna blow up, I apologize in advance. <br>
-Inputs are added to the addresses of the memory. Now, the next state is not only dictated by the <br>
-feedback from the memory, but also the condition of the input(s) at the time of the step signal.<br>
-<br>
-<img style="width: 640px; height: 480px;" alt="" src="p1300145.jpg"><br>
-3.1 - System with inputs, feedback, and outputs.<br>
-<br>
-<br>
-Now the table form of this starts to get kinda complex. To keep it simpler, I have only given the input<br>
-an 'on' and 'off' value (one input bit) , but it could be almost as many bits as you want. Each source state needs to be<br>
-expanded for each possible input state (see, I told you it would explode) <br>
-<br>
-<img style="width: 640px; height: 480px;" alt="" src="p1300146.jpg"><br>
-3.2 - Table memory format with an input bit.<br>
-<br>
-In its programming form, the workings of it start to be a bit more transparent, and its much easier to <br>
-build and modify. What is important when doing the design is to make sure we have accounted for <br>
+Inputs are added to the addresses of the memory. Now, the next state is
+not only dictated by the <br>
+feedback from the memory, but also the condition of the input(s) at the
+time of the step signal.<br>
+      <br>
+      <div style="text-align: center;"><img style="width: 640px; height: 480px;" alt="" src="p1300145.jpg"><br>
+      </div>
+      <div style="text-align: center;">3.1 - System with inputs,
+feedback, and outputs.<br>
+      </div>
+      <br>
+      <br>
+Now the table form of this starts to get kinda complex. To keep it
+simpler, I have only given the input<br>
+an 'on' and 'off' value (one input bit) , but it could be almost as
+many bits as you want. Each source state needs to be<br>
+expanded for each possible input state (see, I told you it would
+explode) <br>
+      <br>
+      <div style="text-align: center;"><img style="width: 640px; height: 480px;" alt="" src="p1300146.jpg"><br>
+      </div>
+      <div style="text-align: center;">3.2 - Table memory format with
+an input bit.<br>
+      </div>
+      <br>
+In its programming form, the workings of it start to be a bit more
+transparent, and its much easier to <br>
+build and modify. What is important when doing the design is to make
+sure we have accounted for <br>
 every combination and state of the feedback and inputs.<br>
-<br>
-<img style="width: 640px; height: 480px;" alt="" src="p1300171.jpg"><br>
-3.3 - Alternate programing language expression of table with inputs<br>
-<br>
-<span style="font-weight: bold; text-decoration: underline;">OH THE COPLEXITIES</span><br>
-<br>
-In about 2006 I wrote a program that would allow somone to build a 'microcontroller' from a ROM<br>
-using this sort of BASIC like programming language. But there was a problem when it came to actually using it.<br>
-My applications had more than one input and output, and I could only express it as one value.<br>
-<br>
-<img style="width: 552px; height: 391px;" alt="" src="romctrl.png"><img style="width: 552px; height: 391px;" alt="" src="romctrl2.png"><br>
-4.1 - screen shots of 'romctrl' a tool for building FSM controllers from memory chips.<br>
-<br>
-<br>
-To get around this limitation, in about 2007 I wrote another program, this one allowed you to break your input, feedback, and <br>
-output values up, and specify how many values each one had. This would allow you to specify equations for the outputs and <br>
+      <br>
+      <div style="text-align: center;"><img style="width: 640px; height: 480px;" alt="" src="p1300171.jpg"><br>
+      </div>
+      <div style="text-align: center;">3.3 - Alternate programing
+language expression of table with inputs<br>
+      </div>
+      <br>
+      <span style="font-weight: bold; text-decoration: underline;">OH
+THE
+COPLEXITIES</span><br>
+      <br>
+In about 2006 I wrote a program that would allow somone to build a
+'microcontroller' from a ROM<br>
+using this sort of BASIC like programming language. But there was a
+problem when it came to actually using it.<br>
+My applications had more than one input and output, and I could only
+express it as one value.<br>
+      <br>
+      <div style="text-align: center;"><img style="width: 552px; height: 391px;" alt="" src="romctrl.png"><img style="width: 552px; height: 391px;" alt="" src="romctrl2.png"><br>
+      </div>
+      <div style="text-align: center;">4.1 - screen shots of 'romctrl'
+a tool for building FSM controllers
+from memory chips.<br>
+      </div>
+      <br>
+      <br>
+To get around this limitation, in about 2007 I wrote another program,
+this one allowed you to break your input, feedback, and <br>
+output values up, and specify how many values each one had. This would
+allow you to specify equations for the outputs and <br>
 feedback entries in the table. But it had a problem too, I was quickly
 sliding into developing a whole language to make the rules.<br>
-<br>
-<br>
-<img style="width: 552px; height: 365px;" alt="" src="combo.png"><br>
-4.2 - screenshot of 'combo'<br>
-<br>
-The next development was AWESOME. I discovered <a href="https://github.com/Manawyrm/PHPPLD">this</a> project, PHPPLD, it used PHP to build that table image.<br>
-This meant that you could use ANY FUNCTION available in PHP to build the ROM table for your FSM.<br>
+      <br>
+      <br>
+      <div style="text-align: center;"><img style="width: 552px; height: 365px;" alt="" src="combo.png"><br>
+      </div>
+      <div style="text-align: center;">4.2 - screenshot of 'combo'<br>
+      </div>
+      <br>
+The next development was AWESOME. I discovered <a href="https://github.com/Manawyrm/PHPPLD">this</a> project, PHPPLD, it
+used PHP to build that table image.<br>
+This meant that you could use ANY FUNCTION available in PHP to build
+the ROM table for your FSM.<br>
 (or LUT or whatever your making with this)<br>
-<br>
-<img style="width: 871px; height: 696px;" alt="" src="PHPPLD.png"><br>
-4.3 PHPPLD project screenshot.<br>
-<br>
-Of course, being who I am, I wasn't happy with this, and after thinking about what I really needed<br>
-decided to write a library in C. I needed 3 things. Sweep the entire memory address range, break the <br>
+      <br>
+      <div style="text-align: center;"><img style="width: 871px; height: 696px;" alt="" src="PHPPLD.png"><br>
+      </div>
+      <div style="text-align: center;">4.3 PHPPLD project screenshot.<br>
+      </div>
+      <br>
+Of course, being who I am, I wasn't happy with this, and after thinking
+about what I really needed<br>
+decided to write a library in C. I needed 3 things. Sweep the entire
+memory address range, break the <br>
 address down into fields, and recompose results into an output value.<br>
-<br>
-<br>
-<img style="width: 719px; height: 403px;" alt="" src="CPLD.png"><br>
-4.4 - C_PLD project screenshot.<br>
-<br>
-<span style="font-weight: bold; text-decoration: underline;">FIELDS</span><br>
-<br>
-I would like to elaborate on bit fields. I will use this example of hardware.<br>
-In the construction of these systems, there is one memory block (LUT) and regardless of how you use<br>
-it, the inputs are expressed as one value and the output is expressed as one value. To simplify programming<br>
+      <br>
+      <br>
+      <div style="text-align: center;"><img style="width: 719px; height: 403px;" alt="" src="CPLD.png"><br>
+      </div>
+      <div style="text-align: center;">4.4 - C_PLD project screenshot.<br>
+      </div>
+      <br>
+      <span style="font-weight: bold; text-decoration: underline;">FIELDS</span><br>
+      <br>
+I would like to elaborate on bit fields. I will use this example of
+hardware.<br>
+In the construction of these systems, there is one memory block (LUT)
+and regardless of how you use<br>
+it, the inputs are expressed as one value and the output is expressed
+as one value. To simplify programming<br>
 we want these values broken down into fields.<br>
-<br>
-<img style="width: 640px; height: 480px;" alt="" src="p1300173.jpg"><br>
-5.1 - example system.<br>
-<br>
-The memory has an 8 bit value input, A0-A7, and an 8 bit value output, D0-D7.<br>
-Thats all the memory cares about. Which index do you want, here is the value.<br>
-<br>
-<img style="width: 640px; height: 480px;" alt="" src="foclut.jpg"><br>
-5.2 - The memory of the system.<br>
-<br>
-This state machine has all the elements. It has inputs(orange), feedback(green), and outputs(blue). Each <br>
-of which are 4 bit systems. However even this simple system would require building a memory table<br>
-with 256 values. It is not fun to do this by hand. We will use software to do this for us.<br>
-<br>
-<img style="width: 640px; height: 480px;" alt="" src="focsystems.jpg"><br>
-5.3 - The system elements. Input, feedback, output.<br>
-<br>
+      <br>
+      <div style="text-align: center;"><img style="width: 640px; height: 480px;" alt="" src="p1300173.jpg"><br>
+      </div>
+      <div style="text-align: center;">5.1 - example system.<br>
+      </div>
+      <br>
+The memory has an 8 bit value input, A0-A7, and an 8 bit value output,
+D0-D7.<br>
+Thats all the memory cares about. Which index do you want, here is the
+value.<br>
+      <br>
+      <div style="text-align: center;"><img style="width: 640px; height: 480px;" alt="" src="foclut.jpg"><br>
+      </div>
+      <div style="text-align: center;">5.2 - The memory of the system.<br>
+      </div>
+      <br>
+This state machine has all the elements. It has inputs(orange),
+feedback(green), and outputs(blue). Each <br>
+of which are 4 bit systems. However even this simple system would
+require building a memory table<br>
+with 256 values. It is not fun to do this by hand. We will use software
+to do this for us.<br>
+      <br>
+      <div style="text-align: center;"><img style="width: 640px; height: 480px;" alt="" src="focsystems.jpg"><br>
+      </div>
+      <div style="text-align: center;">5.3 - The system elements.
+Input, feedback, output.<br>
+      </div>
+      <br>
 The system mechanically breaks down into the following bit fields:<br>
 Inputs: A4-7<br>
 Outputs: D4-7<br>
 Feedback: D0-3 -&gt; A0-3<br>
-<br>
-<img style="width: 640px; height: 480px;" alt="" src="p1300174.jpg"><br>
-5.4 - mechanical bit field breakdowns.<br>
-<br>
-Furthermore, I will be breaking the 4 bits of feedback into two logical 2 bit values. <br>
+      <br>
+      <div style="text-align: center;"><img style="width: 640px; height: 480px;" alt="" src="p1300174.jpg"><br>
+      </div>
+      <div style="text-align: center;">5.4 - mechanical bit field
+breakdowns.<br>
+      </div>
+      <br>
+Furthermore, I will be breaking the 4 bits of feedback into two logical
+2 bit values. <br>
 - program number.<br>
 - program state.<br>
-<br>
-<img style="width: 640px; height: 480px;" alt="" src="p1300175.jpg"><br>
-5.5 - logical bitfield breakdowns.<br>
-<br>
-<br>
-I will leave the inputs fairly simple and use each button to select one of the 4 programs on the system.<br>
+      <br>
+      <div style="text-align: center;"><img style="width: 640px; height: 480px;" alt="" src="p1300175.jpg"><br>
+      </div>
+      <div style="text-align: center;">5.5 - logical bitfield
+breakdowns.<br>
+      </div>
+      <br>
+      <br>
+I will leave the inputs fairly simple and use each button to select one
+of the 4 programs on the system.<br>
 The leds I will consider a 4 bit value.<br>
-<br>
-<img style="width: 640px; height: 480px;" alt="" src="p1300177.jpg"><br>
-5.6 - logical bit fields added to physical bit fields.<br>
-<br>
-<span style="font-weight: bold; text-decoration: underline;">PROGRAMMING</span><br>
-<br>
-This is where the hole seems to exist on most of the information for these systems.<br>
-I'm going to use C_PLD for creating the ROM images that will operate the state machine. <br>
-Unlike the programs I wrote, with C_PLD you write a program, not a configuration file.<br>
+      <br>
+      <div style="text-align: center;"><img style="width: 640px; height: 480px;" alt="" src="p1300177.jpg"><br>
+      </div>
+      <div style="text-align: center;">5.6 - logical bit fields added
+to physical bit fields.<br>
+      </div>
+      <br>
+      <span style="font-weight: bold; text-decoration: underline;">PROGRAMMING</span><br>
+      <br>
+This is where the hole seems to exist on most of the information for
+these systems.<br>
+I'm going to use C_PLD for creating the ROM images that will operate
+the state machine. <br>
+Unlike the programs I wrote, with C_PLD you write a program, not a
+configuration file.<br>
 The first step is to configure the environment in main.c.<br>
-<br>
-<img style="width: 263px; height: 188px;" alt="" src="C_PLD1.png"><br>
-6.1 memory configuration in main.c<br>
-<br>
-<br>
-Here is the part we will tackle next, I will start by breaking down the parts of the code and describing how it works.<br>
+      <br>
+      <div style="text-align: center;"><img style="width: 263px; height: 188px;" alt="" src="C_PLD1.png"><br>
+      </div>
+      <div style="text-align: center;">6.1 memory configuration in
+main.c<br>
+      </div>
+      <br>
+      <br>
+Here is the part we will tackle next, I will start by breaking down the
+parts of the code and describing how it works.<br>
 Then I'll work on getting into modifying it to do particular things.<br>
-<br>
-<img style="width: 957px; height: 648px;" alt="" src="C_PLD2.png"><br>
-6.2 - example source for the example circuit<br>
-<br>
-The code has 3 main tasks, break down every address in the table into the variables used. (orange)<br>
+      <br>
+      <div style="text-align: center;"><img style="width: 957px; height: 648px;" alt="" src="C_PLD2.png"><br>
+      </div>
+      <div style="text-align: center;">6.2 - example source for the
+example circuit<br>
+      </div>
+      <br>
+The code has 3 main tasks, break down every address in the table into
+the variables used. (orange)<br>
 Apply your custom code to modify your variables. (blue)<br>
 Recombine the variables into entries for the table. (green)<br>
 These values are saved as binary values in a file named output.bin<br>
-<br>
-<img style="width: 957px; height: 648px;" alt="" src="C_PLD3.png"><br>
-6.3 - The different code components hilighted.<br>
-<br>
-<br>
+      <br>
+      <div style="text-align: center;"><img style="width: 957px; height: 648px;" alt="" src="C_PLD3.png"><br>
+      </div>
+      <div style="text-align: center;">6.3 - The different code
+components hilighted.<br>
+      </div>
+      <br>
+      <br>
 System inputs: As said, we have 3 inputs to form the address of the
 table. The keyboard, the program number, and the program state. <br>
 These 3 lines of code take an "arbitrary" simulated address input, and
 form our 3 variables. These 3 lines of code split the that up for us.<br>
-<br>
-<img style="width: 473px; height: 270px;" alt="" src="C_PLD4.png"><br>
-6.4 - breaking down the address of the table into variables.<br>
-<br>
-<br>
-Next is the completely custom code to perform our process. This is the first example of some code<br>
-I will demonstrate on a build of the example hardware. It stays in program 0, steps thru all 4 states, <br>
+      <br>
+      <div style="text-align: center;"><img style="width: 473px; height: 270px;" alt="" src="C_PLD4.png"><br>
+      </div>
+      <div style="text-align: center;">6.4 - breaking down the address
+of the table into variables.<br>
+      </div>
+      <br>
+      <br>
+Next is the completely custom code to perform our process. This is the
+first example of some code<br>
+I will demonstrate on a build of the example hardware. It stays in
+program 0, steps thru all 4 states, <br>
 Each state turns on one of the output LEDs. <br>
-<br>
-<img style="width: 371px; height: 261px;" alt="" src="C_PLD5.png"><br>
-6.5 - Code to produce our output values.<br>
-<br>
-<br>
-The last step is to have it take the output values and compose them into a single value for the table.<br>
-This code is much like the breaking down of the addresses, but in reverse. This specifies which bits of the <br>
+      <br>
+      <div style="text-align: center;"><img style="width: 371px; height: 261px;" alt="" src="C_PLD5.png"><br>
+      </div>
+      <div style="text-align: center;">6.5 - Code to produce our output
+values.<br>
+      </div>
+      <br>
+      <br>
+The last step is to have it take the output values and compose them
+into a single value for the table.<br>
+This code is much like the breaking down of the addresses, but in
+reverse. This specifies which bits of the <br>
 table value our variables are mapped into.<br>
-<img style="width: 543px; height: 208px;" alt="" src="C_PLD6.png"><br>
-6.6 - Merging the output variables into a single value.<br>
-<br>
-Its important to note that bit splicing positions do not have to be consecutive or in order. The EPROM pinout<br>
-is a good example. On this ROM, the adjacent address lines go from 0-7, but then 12, and 15. <br>
-<div style="margin-left: 40px; color: rgb(102, 0, 204);">spliceValueFromField( &amp;my10bitVarI, A, 10,&nbsp; 0,1,2,3,4,5,6,7,12,15);<br>
-</div>
-A 4 bit value could be created with adjacent bits on the other side if one wanted.<br>
-<div style="margin-left: 40px; color: rgb(102, 51, 255);"><span style="color: rgb(102, 0, 204);">spliceValueFromField( &amp;my4bitVarI, A, 4,&nbsp; 13,8,9,11);</span><br>
-</div>
-<br>
-<br>
-<img style="width: 427px; height: 377px;" alt="" src="ROM1.png"><br>
-6.7 - Example of unorderly bits that can be handled in the bit splicing.<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+      <div style="text-align: center;"><img style="width: 543px; height: 208px;" alt="" src="C_PLD6.png"><br>
+      </div>
+      <div style="text-align: center;">6.6 - Merging the output
+variables into a single value.<br>
+      </div>
+      <br>
+Its important to note that bit splicing positions do not have to be
+consecutive or in order. The EPROM pinout<br>
+is a good example. On this ROM, the adjacent address lines go from 0-7,
+but then 12, and 15. <br>
+      <div style="margin-left: 40px; color: rgb(102, 0, 204);">spliceValueFromField(
+&amp;my10bitVarI, A, 10,&nbsp; 0,1,2,3,4,5,6,7,12,15);<br>
+      </div>
+A 4 bit value could be created with adjacent bits on the other side if
+one wanted.<br>
+      <div style="margin-left: 40px; color: rgb(102, 51, 255);"><span style="color: rgb(102, 0, 204);">spliceValueFromField(
+&amp;my4bitVarI, A, 4,&nbsp; 13,8,9,11);</span><br>
+      </div>
+      <br>
+      <br>
+      <div style="text-align: center;"><img style="width: 427px; height: 377px;" alt="" src="ROM1.png"><br>
+      </div>
+      <div style="text-align: center;">6.7 - Example of unorderly bits
+that can be handled in the bit splicing.<br>
+      </div>
+      <br>
+      <span style="font-weight: bold; text-decoration: underline;">WORKING
+EXAMPLES</span><br>
+      <br>
+The first example is the code we just looked at. <br>
+The example uses no inputs, and
+only 2 bits of feedback. Program number of feedback is set to zero.<br>
+Feedback state is incremented every cycle.<br>
+One output LED is turned on for each state, representing the state
+numbers 1-4.<br>
+      <br>
+      <div style="text-align: center;"> <img style="width: 957px; height: 648px;" alt="" src="EX1.png"><br>
+7.1 Source code for first example with customized sections hilighted<br>
+      <br>
+      <video width="640" height="480" controls=""> <source src="EX1.webm" type="video/webm"> Video not supported :/</source> </video>
+      <br>
+7.2 demo running on hardware.<br>
+      <br>
+      <br>
+      <br>
+      <br>
+      </div>
+      <br>
+      <div style="text-align: center;">--<br>
+      </div>
+<br>In the next example, the 4 buttons determine the 'stable' state of
+the
+LEDs, which will sequence to a location based on the last button that
+was pushed. This is done by having each button latch in a different
+program number. Each program sequences to a different state and then
+holds there. Like the last example, each state lights an LED. The
+outputs have been synchronized between the programs so that the
+switching between programs is seamess to the display. The system
+maintains the state number when the program number is changed.<br>
+      <br>
+      <div style="text-align: center;">
+      <img style="width: 928px; height: 784px;" alt="" src="EX2.png"><br>
+
+&nbsp;7.3 Unique code for second example.<br>
+
+      <br>
+
+      <video width="640" height="480" controls=""> <source src="EX2.webm" type="video/webm"> Video not supported :/</source> </video>
+      <br>
+7.4 Video of second example.<br>
+      </div>
+
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
 Methods<br>
-<br>
-- using rising and falling edges of the clock on seperate latches to double the output size at the same clock speed.<br>
-<br>
-- using multiple addreses to transform the outputs into serial bit streams.<br>
-<br>
+      <br>
+- using rising and falling edges of the clock on seperate latches to
+double the output size at the same clock speed.<br>
+      <br>
+- using multiple addreses to transform the outputs into serial bit
+streams.<br>
+      <br>
 - index compression<br>
-<br>
+      <br>
 - events in, events out.<br>
-<br>
+      <br>
 - executing an FSM on an FPGA<br>
-<br>
+      <br>
 - executing an FSM on a CPU<br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
 <br>
 
 </body></html>
